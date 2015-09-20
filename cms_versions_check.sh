@@ -1,17 +1,21 @@
 #!/bin/sh
 ##
 ## Live CMS Versions Check
-version='2.0b';
+version='2.0a';
 
 ## Place all CMS version lookup commands in ./cmsvlcmds.d/
+## See ./cmsvlcmds.d/cms_template.sh for command templating.
+
+# Adding cd $projectdir for cron testing.
+cd /home/servergu/domains/repo.servergur.us/public_html/sshtool/server_crons/
 
 # Versioning file status.
-versionsfile='cms_latest';
+versionsfile="cms_latest";
 versionstmpfile="$versionsfile.tmp";
-runlog='run.log';
+runlog="run.log";
 
-if [ -f $versionsfile ]; then touch $versionstmpfile; writefile=$versionstmpfile; else writefile=$versionsfile; fi
 if [ -f $versionstmpfile ]; then rm -f $versionstmpfile; fi
+if [ -f $versionsfile ]; then touch $versionstmpfile; writefile=$versionstmpfile; else writefile=$versionsfile; fi
 
 ## Run all lookup commands from the ./cmsvlcmds.d/ folder by category.
 
